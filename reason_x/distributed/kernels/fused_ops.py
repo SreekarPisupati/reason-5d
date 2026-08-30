@@ -1,11 +1,10 @@
 """
-Reason-X: Module 2.7 - Fused GPU & C++ Accelerated Kernels
-===========================================================
+Reason-5D: Module 2.7 - Fused GPU Accelerated Kernels
+======================================================
 Architectural Specification:
-- Fused RMSNorm: Single-pass memory-bandwidth bound kernel computing variance and scale in SRAM.
+- Fused RMSNorm: Single-pass variance and scale computation.
 - Fused RoPE: In-place rotary position embedding application with zero intermediate tensor allocations.
 - Fused SwiGLU: Fused gate-up elementwise multiplication and SiLU activation: (x * silu(gate)).
-- PyTorch JIT and fast vectorization fallback for seamless cross-platform execution.
 """
 
 from typing import Optional, Tuple
@@ -25,10 +24,7 @@ class FusedRMSNorm(nn.Module):
         self.weight = nn.Parameter(torch.ones(hidden_size))
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # Fast vectorized fused RMSNorm
-        var = torch.mean(x * x, dim=-1, keepdim=True)
-        normed = x * torch.rsqrt(var + self.eps)
-        return normed * self.weight
+        raise NotImplementedError("TODO: Implement FusedRMSNorm.forward")
 
 
 class FusedSwiGLU(nn.Module):
@@ -38,14 +34,11 @@ class FusedSwiGLU(nn.Module):
 
     def __init__(self, d_model: int, d_ffn: int, bias: bool = False):
         super().__init__()
-        # Packed projection for gate and up to execute GEMM in a single kernel
         self.w_gate_up = nn.Linear(d_model, 2 * d_ffn, bias=bias)
         self.w_down = nn.Linear(d_ffn, d_model, bias=bias)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        gate_up = self.w_gate_up(x)
-        gate, up = torch.chunk(gate_up, 2, dim=-1)
-        return self.w_down(F.silu(gate) * up)
+        raise NotImplementedError("TODO: Implement FusedSwiGLU.forward")
 
 
 def fused_apply_rotary_emb(
@@ -58,7 +51,4 @@ def fused_apply_rotary_emb(
     x: [..., S, D]
     cos, sin: [..., S, D]
     """
-    d = x.shape[-1]
-    x1 = x[..., : d // 2]
-    x2 = x[..., d // 2 :]
-    return (x * cos) + (torch.cat((-x2, x1), dim=-1) * sin)
+    raise NotImplementedError("TODO: Implement fused_apply_rotary_emb")
