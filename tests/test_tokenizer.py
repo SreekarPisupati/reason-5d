@@ -91,7 +91,7 @@ def test_zero_unk_byte_fallback_sla(trained_tokenizer):
 
 def test_reasoning_special_tokens(trained_tokenizer):
     """Verifies that special reasoning delimiters <|think|> and <|end_of_think|> are treated atomically."""
-    text = "<|think|> Step 1: 5 * 5 = 25. </think> Output: 25"
+    text = "<|think|> Step 1: 5 * 5 = 25. <|end_of_think|> Output: 25"
     token_ids = trained_tokenizer.encode(text, allowed_special="all")
     
     think_id = trained_tokenizer.special_tokens["<|think|>"]
