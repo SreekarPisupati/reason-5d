@@ -1,4 +1,4 @@
-# Native Sparse Attention (NSA) Triton Kernel & Frontier ML Systems
+ # Native Sparse Attention (NSA) Triton Kernel & Frontier ML Systems
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![PyTorch 2.2+](https://img.shields.io/badge/PyTorch-2.2%2B-red.svg)](https://pytorch.org/)

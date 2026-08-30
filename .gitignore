@@ -25,6 +25,7 @@ venv/
 env/
 ENV/
 .env
+.venv/
 
 # PyTorch / CUDA
 *.pt
@@ -36,6 +37,9 @@ ENV/
 checkpoints/
 logs/
 wandb/
+
+# Local Dev / Drills
+drills/
 
 # IDE / OS
 .idea/
