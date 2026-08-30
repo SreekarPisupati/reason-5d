@@ -109,8 +109,8 @@ Reason-5D/
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/SreekarPisupati/reason_5d.git
-cd reason_5d
+git clone https://github.com/SreekarPisupati/reason-5d.git
+cd reason-5d
 
 # Create virtual environment
 python -m venv .venv
