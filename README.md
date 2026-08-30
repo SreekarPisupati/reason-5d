@@ -1,4 +1,4 @@
- # Native Sparse Attention (NSA) Triton Kernel & Frontier ML Systems
+# Native Sparse Attention (NSA) Triton Kernel & Frontier ML Systems
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![PyTorch 2.2+](https://img.shields.io/badge/PyTorch-2.2%2B-red.svg)](https://pytorch.org/)
@@ -89,11 +89,6 @@ python benchmarks/bench_attention.py --seq_lens 1024 4096 8192 16384 32768
 Reason-5D/
 |-- benchmarks/
 |   `-- bench_attention.py          # Latency, memory, and roofline profiling suite
-|-- drills/                         # Daily timed implementation drill harness (30 min/day)
-|   |-- drill_online_softmax.py     # Online softmax blockwise derivation
-|   |-- drill_mha_kv.py             # MHA with dynamic KV cache decoding
-|   |-- drill_muon_ns.py            # 5th-order Newton-Schulz momentum orthogonalization
-|   `-- drill_adamw.py              # Decoupled weight decay AdamW from scratch
 |-- reason_x/                       # Core engine package
 |   |-- data/                       # Tokenization, memmap dataset streamer, and decontam
 |   |-- distributed/                # Parallelism and fused GPU kernels
@@ -125,17 +120,9 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Running Test Suite
+### Running Verification Tests
 ```bash
 pytest tests/
-```
-
-### Running Daily Implementation Drills
-```bash
-python drills/drill_online_softmax.py
-python drills/drill_mha_kv.py
-python drills/drill_muon_ns.py
-python drills/drill_adamw.py
 ```
 
 ---
