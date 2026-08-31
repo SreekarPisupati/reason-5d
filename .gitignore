@@ -41,8 +41,9 @@ wandb/
 # Local Dev / Drills
 drills/
 
-# IDE / OS
+# IDE / OS / Agent Configs
 .idea/
 .vscode/
+.agents/
 .DS_Store
 Thumbs.db
